@@ -5,7 +5,17 @@ terraform {
       source = "oracle/oci"
       version = ">= 4"
     }
+    
+    tfe = {
+      version = "~> 0.35"
+    }
+    
   }
+}
+
+# Terraform Cloud organizational provider
+provider "tfe" {
+  token = var.tfe_org_token
 }
 
 # OCI regional provider
