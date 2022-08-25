@@ -30,5 +30,5 @@ data "tfe_outputs" "workspace_outputs" {
   for_each = data.tfe_workspace_ids.workspaces.full_names
   
   organization = local.tfe_org
-  name = each.key
+  workspace = each.key
 }
