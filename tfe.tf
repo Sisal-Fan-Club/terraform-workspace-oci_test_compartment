@@ -1,5 +1,5 @@
 locals {
-  tfe_org = try(data.tfe_organization.orgs[0], {})
+  tfe_org = data.tfe_organization.org
   
   tfe_workspace_outputs = {
     for workspace_name, workspace_outputs in data.tfe_outputs.workspace_outputs :
@@ -10,14 +10,8 @@ locals {
   }
 }
 
-# Find Terraform Organization
-data "tfe_organizations" "orgs" {
-}
-
-data "tfe_organization" "orgs" {
-  for_each = data.tfe_organizations.orgs.ids
-  
-  name = each.value
+data "tfe_organization" "org" {
+  name = "sisal-fan-club"
 }
 
 data "tfe_workspace_ids" "workspaces" {
