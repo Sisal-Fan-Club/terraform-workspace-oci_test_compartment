@@ -23,7 +23,7 @@ data "tfe_organization" "orgs" {
 data "tfe_workspace_ids" "workspaces" {
   organization = local.tfe_org.name
   
-  names = [*]
+  names = ["*"]
 }
 
 data "tfe_outputs" "workspace_outputs" {
