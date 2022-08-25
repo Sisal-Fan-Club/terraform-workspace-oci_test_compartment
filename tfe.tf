@@ -1,6 +1,6 @@
 locals {
   tfe_org = try(data.tfe_organization.orgs[0], {})
-  tfe_workspaces = try(data.tfe_organization.workspaces.ids, {})
+  
   tfe_workspace_outputs = {
     for workspace_name, workspace_outputs in data.tfe_outputs.workspace_outputs :
         workspace_name => {
