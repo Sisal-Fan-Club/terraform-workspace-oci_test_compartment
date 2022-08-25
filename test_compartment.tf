@@ -6,17 +6,14 @@ locals {
 resource "oci_identity_compartment" "test_compartment" {
   provider = oci.home
   
-  compartment_id = var.oci_tenancy_id
+  compartment_id = local.root_compartment.id
   
   name = "${local.root_compartment.name}-test"
-  description = "Sisal Fan Club"
+  description = "${local.root_compartment.description} - Test Environment"
   
-  enable_delete = true
+  enable_delete = local.root_compartment.enable_delete
   
-  freeform_tags = {
-    factory = "digital"
-    app_code = "nsfc"
-    managed-by = "Terraform Cloud"
-    terraform-cloud-workspace = "Sisal-Fan-Club/root_compartment"
-  }
+  freeform_tags = merge({
+    environment = "test"
+  }, local.root_compartment.freeform_tags)
 }
